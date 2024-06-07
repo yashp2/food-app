@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import FilterSection from './components/FilterSection';
+import FoodItemsSection from './components/FoodItemsSection';
+import Footer from './components/Footer';
 
-function App() {
+const App = () => {
+  const [filterArea, setFilterArea] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <Header />
+      <main className="flex-grow container mx-auto p-4">
+        <FilterSection onFilterChange={setFilterArea} onSortChange={setSortOrder} />
+        <FoodItemsSection filterArea={filterArea} sortOrder={sortOrder} />
+      </main>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
